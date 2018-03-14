@@ -1,0 +1,30 @@
+v0=[ -0.0000  ,  0.7071  ,  0.7071];
+v1=[   0.5000 ,   0.5000  ,  0.7071];
+v3=[  -0.0000  ,  0.9239 ,   0.3827];
+v2=[   0.6533  ,  0.6533  ,  0.3827];
+vertex=[v0;v1;v2;v3;v0];
+xx=vertex(:,1);
+yy=vertex(:,2);
+zz=vertex(:,3);
+n0=v0;
+n1=v1;
+n2=v2;
+n3=v3;
+lightPos=[3,3,3];
+lightColor=[1.0,1.0,1.0];
+objectColor=[1.0,1.0,1.0];
+plot3(xx,yy,zz,'g');
+grid on;
+%t=0:1:0.01;
+v01=v1-v0;
+v01=v01/norm(v01);
+diffuse=[];
+for t=1:101
+    v=v0+(t-1)*v01/100;
+    lightDir=lightPos-v;
+    lightDir=lightDir/norm(lightDir);
+    n=v/norm(v);
+    diffuse(t)=dot(lightDir,n);
+end
+x=0:0.01:1;
+plot(x,diffuse);

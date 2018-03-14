@@ -1,0 +1,31 @@
+%œ∏∑÷«Ú–ŒªÊÕº
+phi_step=8;
+theta_step=8;
+phi=-pi/2;
+theta=0;
+delta_theta=2*pi/theta_step;
+delta_phi=pi/phi_step;
+radius=1;
+x=[];
+y=[];
+z=[];
+x(1)=0;
+z(1)=0;
+y(1)=-1;
+index=2;
+for i=1:phi_step-1
+    phi=phi+delta_phi;
+    theta=0;
+    r=cos(phi);
+    for j=1:theta_step+1
+        theta=theta+delta_theta;
+        x(index)=cos(theta)*r;
+        z(index)=sin(theta)*r;
+        y(index)=sin(phi);
+        index=index+1;
+    end
+end
+x(index)=0;
+z(index)=0;
+y(index)=1;
+plot3(z,x,y,'r');

@@ -1,0 +1,9 @@
+I=imread('test1.png');
+channel_r=I(:,:,1);
+imshow(I);
+[height,width]=size(channel_r);
+x=0:1:width-1;
+y=0:1:height-1;
+[X,Y]=meshgrid(x,y);
+Z=channel_r;
+mesh(X,Y,Z);
