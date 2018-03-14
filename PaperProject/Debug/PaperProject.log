@@ -9,4 +9,10 @@ f:\finalproject\paperproject\paperproject\outputtridata.cpp(26): warning C4018: 
 f:\finalproject\paperproject\paperproject\outputtridata.cpp(28): warning C4018: “<”: 有符号/无符号不匹配
 f:\finalproject\paperproject\paperproject\outputtridata.cpp(40): warning C4305: “+=”: 从“double”到“float”截断
 f:\finalproject\paperproject\paperproject\outputtridata.cpp(41): warning C4305: “+=”: 从“double”到“float”截断
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(35): warning C4477: “fprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 1 拥有了类型“int”
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(35): warning C4477: “fprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 2 拥有了类型“int”
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(36): warning C4477: “fprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 1 拥有了类型“int”
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(36): warning C4477: “fprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 2 拥有了类型“int”
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(37): warning C4477: “fprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 1 拥有了类型“int”
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(37): warning C4477: “fprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 2 拥有了类型“int”
   PaperProject.vcxproj -> F:\FinalProject\PaperProject\Debug\PaperProject.exe

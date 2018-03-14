@@ -47,6 +47,7 @@ plot3(spp(1),spp(2),spp(3),'xg');
 hold on;
 end
 %计算采样点处的颜色
+tri0=load('F:/FinalProject/PaperProject/BakingData/cube/t0.txt');
 % 
 % plot3(v0(1),v0(2),v0(3),'or');
 % hold on;
