@@ -1,6 +1,7 @@
 #include "OutputTriData.h"
 #include "ModelFileLoader.h"
 #include "SceneFileManager.h"
+#include <glm/glm.hpp>
 #include <string>
 #include <iostream>
 #include <io.h>  
@@ -28,7 +29,14 @@ OutputTriData::OutputTriData(const char* root, Scene *scene)
 				fprintf(file, "v1 %f %f %f\n", vertices[i * 3 + 1].Position.x, vertices[i * 3 + 1].Position.y, vertices[i * 3 + 1].Position.z);
 				fprintf(file, "v2 %f %f %f\n", vertices[i * 3 + 2].Position.x, vertices[i * 3 + 2].Position.y, vertices[i * 3 + 2].Position.z);
 				//输出采样点
-				fprintf(file, "sp(s,t) r g b\n");
+				fprintf(file, "#sp(s,t) r g b\n");
+				float s = 0.3, t = 0.3;
+				Vertex sp;
+				sp.Position = s * vertices[i * 3 + 0].Position + t * vertices[i * 3 + 1].Position +(1 - s - t)* vertices[i * 3 + 2].Position;
+				sp.Normal = s * vertices[i * 3 + 0].Normal + t * vertices[i * 3 + 1].Normal + (1 - s - t)* vertices[i * 3 + 2].Normal;
+				sp.TexCoords = s * vertices[i * 3 + 0].TexCoords + t * vertices[i * 3 + 1].TexCoords + (1 - s - t)* vertices[i * 3 + 2].TexCoords;
+
+
 				fclose(file);
 			}
 	}

@@ -1,4 +1,4 @@
-function [bc] = UniformSampleTri(v0,v1,v2,N)
+function [bc,vv0,vv1,vv2] = UniformSampleTri(v0,v1,v2,N)
 %UNIFORMSAMPLETRI 此处显示有关此函数的摘要
 %   在三角形上均匀采样并绘制点
  %在矩形内均匀采样
@@ -47,8 +47,6 @@ function [bc] = UniformSampleTri(v0,v1,v2,N)
     bc=[];
     count=0;
     A=[v0(1)-v2(1),v0(2)-v2(2),v0(3)-v2(3);v1(1)-v2(1),v1(2)-v2(2),v1(3)-v2(3)]';
-    em
-    h
     %垂直于三角形的向量ej
     ej=cross(v1-v0,v2-v0);
     %计算两个方向的采样数
@@ -63,7 +61,7 @@ for i=1:Nb
     sp=v1+s*h+t*(v2-v1);
     %判断采样点是否在三角形内部
     if(IsInTriangle(v0,v1,v2,sp))
-         plot3(sp(1),sp(2),sp(3),'oc');
+         plot3(sp(1),sp(2),sp(3),'.c');
          %根据采样点计算重心坐标
          b=[sp(1)-v2(1),sp(2)-v2(2),sp(3)-v2(3)]';
          count=count+1;
@@ -87,5 +85,8 @@ for i=1:Nb
 %     错误的采样方法
    
 end
+vv0=v0;
+vv1=v1;
+vv2=v2;
 end
 
