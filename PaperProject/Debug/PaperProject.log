@@ -1,1 +1,10 @@
-﻿
+﻿  OutputTriData.cpp
+f:\finalproject\paperproject\paperproject\shader.h(65): warning C4101: “infoLog”: 未引用的局部变量
+f:\finalproject\paperproject\paperproject\shader.h(64): warning C4101: “success”: 未引用的局部变量
+f:\finalproject\paperproject\paperproject\scene.h(13): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\paperproject\scene.h(27): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\paperproject\scene.h(36): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\paperproject\scene.h(42): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(18): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(20): warning C4018: “<”: 有符号/无符号不匹配
+  PaperProject.vcxproj -> F:\FinalProject\PaperProject\Debug\PaperProject.exe

@@ -7,7 +7,7 @@
 extern bool DrawColorScene;
 bool DoBaking =0;
 void Precompute();
-const char *OutTriRoot = "../Models/test/";
+const char *OutTriRoot = "../BakingData/";
 int main() {
 	if (!DoBaking) {
 		GLCanvas *canvas = new GLCanvas();
