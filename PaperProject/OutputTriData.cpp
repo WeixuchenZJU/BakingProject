@@ -32,9 +32,9 @@ OutputTriData::OutputTriData(const char* root, Scene *scene)
 				FILE *file = fopen(datafile.c_str(), "w");
 				//fprintf(file, "#Triangle %d\n", i);
 				//输出顶点 前三行为顶点重心坐标和坐标
-				fprintf(file, "%f %f %f %f %f\n", 1,0,vertices[i * 3 + 0].Position.x, vertices[i * 3 + 0].Position.y, vertices[i * 3 + 0].Position.z);
-				fprintf(file, "%f %f %f %f %f\n", 0,1,vertices[i * 3 + 1].Position.x, vertices[i * 3 + 1].Position.y, vertices[i * 3 + 1].Position.z);
-				fprintf(file, "%f %f %f %f %f\n", 0,0,vertices[i * 3 + 2].Position.x, vertices[i * 3 + 2].Position.y, vertices[i * 3 + 2].Position.z);
+				fprintf(file, "%f %f %f %f %f\n", 1.0f,0.0f,vertices[i * 3 + 0].Position.x, vertices[i * 3 + 0].Position.y, vertices[i * 3 + 0].Position.z);
+				fprintf(file, "%f %f %f %f %f\n", 0.0f,1.0f,vertices[i * 3 + 1].Position.x, vertices[i * 3 + 1].Position.y, vertices[i * 3 + 1].Position.z);
+				fprintf(file, "%f %f %f %f %f\n", 0.0f,0.0f,vertices[i * 3 + 2].Position.x, vertices[i * 3 + 2].Position.y, vertices[i * 3 + 2].Position.z);
 				//输出采样点 后几行为采样点
 				//fprintf(file, "#sp(s,t) r g b\n");
 				for (float s = 0; s <= 1; s += 0.01) {
