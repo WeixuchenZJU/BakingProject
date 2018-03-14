@@ -21,33 +21,46 @@
 % plot(t,x,t,y);
 % subplot(1,3,3);
 % plot(t,x,t,y);
-v0=[1,0,0]';
-v1=[0,0.5,0]';
-v2=[0,-0.5,0]';
+%计算采样点处的颜色
+for i=0:11
+tri0=load(strcat(strcat('F:/FinalProject/PaperProject/BakingData/cube/t',num2str(i,'%d')),'.txt'));
+v0= tri0(1,3:5)';
+v1=tri0(2,3:5)';
+v2=tri0(3,3:5)';
 DrawTriangle(v0,v1,v2);
-[sp,v0,v1,v2]=UniformSampleTri(v0,v1,v2,2000);
-p01=(v0+v1)/2;
-p12=(v1+v2)/2;
-p02=(v0+v2)/2;
-p01(3)=5;
-p02(3)=10;
-p12(3)=7;
-hold on;
-%画控制点
-plot3(p01(1),p01(2),p01(3),'or');
-hold on;
-plot3(p02(1),p02(2),p02(3),'or');
-hold on;
-plot3(p12(1),p12(2),p12(3),'or');
-hold on;
-%根据控制点确定的曲面形状采样
-for i=1:length(sp)
-spp=Bezier2nd(sp(1,i),sp(2,i),v0,p01,v1,p12,v2,p02);
-plot3(spp(1),spp(2),spp(3),'xg');
+for j=4:1020
+s=tri0(j*10,1);
+t=tri0(j*10,2);
+sp=s*v0+t*v1+(1-s-t)*v2;
+plot3(sp(1),sp(2),sp(3),'.','Color',tri0(j*10,3:5));
 hold on;
 end
-%计算采样点处的颜色
-tri0=load('F:/FinalProject/PaperProject/BakingData/cube/t0.txt');
+
+hold on;
+end
+
+% [sp,v0,v1,v2]=UniformSampleTri(v0,v1,v2,2000);
+% p01=(v0+v1)/2;
+% p12=(v1+v2)/2;
+% p02=(v0+v2)/2;
+% p01(3)=5;
+% p02(3)=10;
+% p12(3)=7;
+% hold on;
+% %画控制点
+% plot3(p01(1),p01(2),p01(3),'or');
+% hold on;
+% plot3(p02(1),p02(2),p02(3),'or');
+% hold on;
+% plot3(p12(1),p12(2),p12(3),'or');
+% hold on;
+% %根据控制点确定的曲面形状采样
+% for i=1:length(sp)
+% spp=Bezier2nd(sp(1,i),sp(2,i),v0,p01,v1,p12,v2,p02);
+% plot3(spp(1),spp(2),spp(3),'xg');
+% hold on;
+% end
+
 % 
 % plot3(v0(1),v0(2),v0(3),'or');
 % hold on;
