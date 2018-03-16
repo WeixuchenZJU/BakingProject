@@ -1,4 +1,4 @@
-for i=1:12
+for i=1:1
 tri0=load(strcat(strcat('..\\BakingData\\cube\\t',num2str(i-1,'%d')),'.txt'));
 vv0= tri0(1,3:5)';
 vv1=tri0(2,3:5)';
