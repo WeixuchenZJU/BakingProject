@@ -12,7 +12,7 @@ a=v1(1);
 c=(e02*e02-e12*e12+a*a)/(2*a);
 b=sqrt(e02*e02-c*c);
 v2=[c,b,0]';
-subplot(3,4,i);
+% subplot(3,4,i);
 DrawTriangle(v0,v1,v2);
     for j=4:10204
         s=tri0(j,1);

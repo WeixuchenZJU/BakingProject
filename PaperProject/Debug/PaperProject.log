@@ -1,12 +1,21 @@
-﻿  OutputTriData.cpp
+﻿  GLCanvas.cpp
 f:\finalproject\paperproject\paperproject\shader.h(65): warning C4101: “infoLog”: 未引用的局部变量
 f:\finalproject\paperproject\paperproject\shader.h(64): warning C4101: “success”: 未引用的局部变量
+f:\finalproject\paperproject\paperproject\camera.h(112): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\camera.h(113): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\camera.h(114): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
 f:\finalproject\paperproject\paperproject\scene.h(13): warning C4018: “<”: 有符号/无符号不匹配
 f:\finalproject\paperproject\paperproject\scene.h(27): warning C4018: “<”: 有符号/无符号不匹配
 f:\finalproject\paperproject\paperproject\scene.h(36): warning C4018: “<”: 有符号/无符号不匹配
 f:\finalproject\paperproject\paperproject\scene.h(42): warning C4018: “<”: 有符号/无符号不匹配
-f:\finalproject\paperproject\paperproject\outputtridata.cpp(26): warning C4018: “<”: 有符号/无符号不匹配
-f:\finalproject\paperproject\paperproject\outputtridata.cpp(28): warning C4018: “<”: 有符号/无符号不匹配
-f:\finalproject\paperproject\paperproject\outputtridata.cpp(40): warning C4305: “+=”: 从“double”到“float”截断
-f:\finalproject\paperproject\paperproject\outputtridata.cpp(41): warning C4305: “+=”: 从“double”到“float”截断
+f:\finalproject\paperproject\paperproject\glcanvas.cpp(206): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\glcanvas.cpp(208): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\glcanvas.cpp(210): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\glcanvas.cpp(212): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\glcanvas.cpp(214): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\glcanvas.cpp(216): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\glcanvas.cpp(251): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码...
+  正在跳过...(未检测到相关更改)
+  OpenGLViewer.cpp
   PaperProject.vcxproj -> F:\FinalProject\PaperProject\Debug\PaperProject.exe

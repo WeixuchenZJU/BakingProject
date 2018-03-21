@@ -30,7 +30,7 @@ namespace scenemanager {
 		"../Models/Plane_r.obj" ,//6
 
 	};
-	static int sceneindex =1;
+	static int sceneindex =4;
 	static glm::vec3 CAMERA_POS = glm::vec3(0.0f, 0.0f, 2.0f);
 
 	//Light Info

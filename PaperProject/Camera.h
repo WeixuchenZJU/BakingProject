@@ -92,6 +92,16 @@ public:
 	void ProcessRightButtonPressed(float offset) {
 		Position += Direction*offset*MouseSensitivity;
 	}
+	void PrintCameraAttributes() {
+		printf("********<Camera Status>********\n");
+		printf("<Pos:%.2f %.2f %.2f>\n",Position.x, Position.y, Position.z);
+		printf("<Direction:%.2f %.2f %.2f>\n", Direction.x, Direction.y, Direction.z);
+		printf("<Horizon:%.2f %.2f %.2f>\n", Horizon.x, Horizon.y, Horizon.z);
+		printf("<Up:%.2f %.2f %.2f>\n", Up.x, Up.y, Up.z);
+		printf("<Yaw:%.2f>\n", Yaw);
+		printf("<Pitch:%.2f\n>", Pitch);
+
+	}
 //
 private:
 	// Calculates the front vector from the Camera's (updated) Eular Angles

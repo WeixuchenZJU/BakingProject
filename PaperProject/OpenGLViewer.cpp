@@ -18,18 +18,21 @@ int main() {
 			canvas->LoadColorScene(scenemanager::outputscenefile[scenemanager::sceneindex]);
 		}
 		else {
-			ourShader = new Shader("./Shaders/simpleshader.vs", "./Shaders/simpleshader.fs");
+			//Simple diffuse light shader
+			//ourShader = new Shader("./Shaders/simpleshader.vs", "./Shaders/simpleshader.fs");
+			//Diffuse texture shader
+			ourShader = new Shader("./Shaders/diffuseshader.vs", "./Shaders/diffuseshader.fs");
 			canvas->LoadScene(scenemanager::scenefile[scenemanager::sceneindex]);
 			//canvas->LoadScene("../Models/test.obj");
 		}
-		Camera *camera = new Camera(scenemanager::CAMERA_POS);
-		canvas->SetCamera(camera);
+
+		//canvas->SetCamera(camera);
 		canvas->SetShader(ourShader);
 		//
 
 		canvas->Render();
 		canvas->Quit();
-		OutputTriData out(OutTriRoot,canvas->GetScene());
+		//OutputTriData out(OutTriRoot,canvas->GetScene());
 	}
 	else {
 		Precompute();

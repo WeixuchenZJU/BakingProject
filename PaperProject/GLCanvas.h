@@ -17,12 +17,14 @@ public:
 	void Render();
 	void Quit();
 	void SetShader(Shader* shader) { this->m_shader = shader; }
-	void SetCamera(Camera* camera) { this->m_camera = camera; }
+	//void SetCamera(Camera* camera) { GLCanvas::m_camera = camera; }
 	void LoadScene(const char* file);
 	Scene* GetScene() { return m_scene; }
 	void LoadColorScene(const char* file);
 	void processInput(GLFWwindow *window);
-
+	//static Camera* GetCamera() { return m_camera; }
+	//static Camera* m_camera;
+	
 private:
 	void ComputeFPS();
 //	GLuint VBO, VAO, EBO;
@@ -31,7 +33,7 @@ private:
 	//std::vector<unsigned int> indices;
 	GLFWwindow* window;
 	std::string windowtitle;
-	Camera* m_camera;
+	
 	Shader* m_shader;
 	Scene* m_scene;
 };

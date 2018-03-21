@@ -16,9 +16,31 @@ bool DrawColorScene = 0;
 
 int SCR_WIDTH=1920;
 int SCR_HEIGHT=1080;
-
+Camera camera(scenemanager::CAMERA_POS);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void keyboard_callback(GLFWwindow* window, int key, int scnacode,int action,int bit);
+void keyboard_callback(GLFWwindow* window, int key, int scnacode, int action, int bit) {
+	if (key == GLFW_KEY_0 && action == GLFW_PRESS) {
+		printf("Snapshot!\n");
+		GLubyte *bits;//定义指向位图数据的指针
+		bits = (unsigned char *)malloc(SCR_WIDTH*SCR_HEIGHT * 3);//为位图分配内存空间并赋值给bits
+		Image* img = new Image(SCR_WIDTH, SCR_HEIGHT);
+		glReadPixels(0, 0, SCR_WIDTH, SCR_HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, bits);
+		for (int y = 0; y < SCR_HEIGHT; y++) {
+			for (int x = 0; x < SCR_WIDTH; x++) {
+				int index = (y*SCR_WIDTH + x) * 3;
+				//printf("Pixel<%d,%d> %d,%d,%d\n", x, y, bits[index], bits[index + 1], bits[index + 2]);
+				img->SetPixel(x, y, glm::vec3((int)bits[index] * 1.0f / 255.0f, (int)bits[index + 1] * 1.0f / 255.0f, (int)bits[index + 2] * 1.0f / 255.0f));
+			}
+		}
+		img->SaveTGA("Snapshot.tga");
+		delete(img);
+	}
+	if (key == GLFW_KEY_1 && action == GLFW_PRESS)
+	{
+
+		camera.PrintCameraAttributes();
+	}
+}
 
 GLCanvas::GLCanvas()
 {
@@ -80,11 +102,11 @@ void GLCanvas::Render()
 		m_shader->setVec3("lightPos", scenemanager::lightpos[0]);
 		m_shader->setVec3("lightColor", scenemanager::lightcolor[0]);
 		// pass projection matrix to shader (note that in this case it could change every frame)
-		glm::mat4 projection = glm::perspective(m_camera->Zoom, (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 10000.0f);
+		glm::mat4 projection = glm::perspective(camera.Zoom, (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 10000.0f);
 		m_shader->setMat4("projection", projection);
 
 		// camera/view transformation
-		glm::mat4 view = m_camera->GetViewMatrix();
+		glm::mat4 view = camera.GetViewMatrix();
 		m_shader->setMat4("view", view);
 		// calculate the model matrix for each object and pass it to shader before drawing
 		glm::mat4 model;
@@ -174,41 +196,24 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	SCR_HEIGHT = height;
 	glViewport(0, 0, width, height);
 }
-void keyboard_callback(GLFWwindow* window, int key, int scnacode, int action, int bit) {
-	if (key == GLFW_KEY_0&&action==GLFW_PRESS) {
-		printf("Snapshot!\n");
-		GLubyte *bits;//定义指向位图数据的指针
-		bits = (unsigned char *)malloc(SCR_WIDTH*SCR_HEIGHT * 3);//为位图分配内存空间并赋值给bits
-		Image* img = new Image(SCR_WIDTH, SCR_HEIGHT);
-		glReadPixels(0, 0, SCR_WIDTH, SCR_HEIGHT, GL_RGB, GL_UNSIGNED_BYTE,bits);
-		for (int y = 0; y < SCR_HEIGHT; y++) {
-			for (int x = 0; x < SCR_WIDTH; x++) {		
-				int index = (y*SCR_WIDTH+x)*3;
-				//printf("Pixel<%d,%d> %d,%d,%d\n", x, y, bits[index], bits[index + 1], bits[index + 2]);
-				img->SetPixel(x, y, glm::vec3((int)bits[index] * 1.0f / 255.0f, (int)bits[index + 1] * 1.0f / 255.0f, (int)bits[index + 2] * 1.0f / 255.0f));
-			}
-		}
-		img->SaveTGA("Snapshot.tga");
-		delete(img);
-	}
-}
+
 void GLCanvas::processInput(GLFWwindow *window)
 {
 	//Keyboard Input
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		m_camera->ProcessKeyboard(UPWARD, deltaTime);
+		camera.ProcessKeyboard(UPWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		m_camera->ProcessKeyboard(DOWNWARD, deltaTime);
+		camera.ProcessKeyboard(DOWNWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		m_camera->ProcessKeyboard(LEFT, deltaTime);
+		camera.ProcessKeyboard(LEFT, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		m_camera->ProcessKeyboard(RIGHT, deltaTime);
+		camera.ProcessKeyboard(RIGHT, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-		m_camera->ProcessKeyboard(FORWARD, deltaTime);
+		camera.ProcessKeyboard(FORWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		m_camera->ProcessKeyboard(BACKWARD, deltaTime);
+		camera.ProcessKeyboard(BACKWARD, deltaTime);
 		//Mouse Input
 	if (glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) {
 		//Left Button control view direction
@@ -225,7 +230,7 @@ void GLCanvas::processInput(GLFWwindow *window)
 			double xoffset = xpos - lastX;
 			double yoffset = lastY - ypos; 
 			//std::cout << " " << xpos << " " << ypos << " " << xoffset << " " << yoffset << std::endl;
-			m_camera->ProcessMouseMovement(xoffset, yoffset);
+			camera.ProcessMouseMovement(xoffset, yoffset);
 		}
 		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) == GLFW_RELEASE) {
 			firstLeftMouse = true;
@@ -243,7 +248,7 @@ void GLCanvas::processInput(GLFWwindow *window)
 			double xoffset = xpos - lastX;
 			double yoffset = lastY - ypos;
 			double offset = fabs(xoffset) > fabs(yoffset) ? xoffset : yoffset;
-			m_camera->ProcessRightButtonPressed(offset);
+			camera.ProcessRightButtonPressed(offset);
 		}
 		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_RELEASE) {
 			firstRightMouse = true;
