@@ -6,6 +6,7 @@
 #include "PathTracer.h"
 #include "Path.h"
 #include <random>
+
 #define PI 3.14159265358979323846
 static std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // generates random floats between 0.0 and 1.0
 static std::default_random_engine generator;
@@ -16,12 +17,12 @@ glm::vec3 camera_up(0.0f, 1.0f, 0.0f);
 int WIDTH =512;
 int HEIGHT =512;
 float camera_fovy =49.1f; 
-const char* cornell_box_file_0 = "F:\\FinalProject\\PaperProject\\Models\\scene_0_obj\\CornellBox.obj";
-const char* cornell_box_file_1 = "F:\\FinalProject\\PaperProject\\Models\\scene_1_obj\\scene01.obj";
-const char* cornell_box_mtl_file_0 = "F:\\FinalProject\\PaperProject\\Models\\scene_0_obj\\CornellBox.mtl";
-const char* cornell_box_mtl_file_1 = "F:\\FinalProject\\PaperProject\\Models\\scene_1_obj\\scene01.mtl";
+const char* cornell_box_file_0 = "..\\Models\\scene_0_obj\\CornellBox.obj";
+const char* cornell_box_file_1 = "..\\Models\\scene_1_obj\\scene01.obj";
+const char* cornell_box_mtl_file_0 = "..\\Models\\scene_0_obj\\CornellBox.mtl";
+const char* cornell_box_mtl_file_1 = "..\\Models\\scene_1_obj\\scene01.mtl";
 int top_left_corner = 0;
-int bottom_right_corner =128;
+int bottom_right_corner =512;
 struct path {
 	glm::vec3 result;
 	glm::vec3 radiance;
@@ -86,7 +87,7 @@ int main()
 	Image* result = new Image(WIDTH, HEIGHT);
 	PathTracer pathtracer(&scene_parser, DEPTH);
 	result->SetAllPixels(glm::vec3(0.0f, 0.0f, 0.0f));
-	double totalnum = 128 * 128;
+	double totalnum = WIDTH*HEIGHT;
 	double percentage = 0.0f;
 	int num = 0;
 	for (int i =top_left_corner; i <bottom_right_corner; i++) {
@@ -193,13 +194,14 @@ int main()
 				color += current_path.result*inv_samples;
 			}
 			percentage = (num++)*1.0f / totalnum;
-			//printf("/r\n", i, j);
-			std::cout << "\r" << percentage;
+			printf("\r%.6f%",percentage);
+			glm::clamp(color, glm::vec3(0, 0, 0), glm::vec3(1, 1, 1));
+			//std::cout << "\r" << percentage;
 		//	printf("\r%f",)
 			result->SetPixel(i, j,color);
 		}
 	}
-	result->SaveTGA("test1234.tga");
+	result->SaveTGA("test512_4.tga");
 	delete result;
 	
 	//double sum = 0.0;
