@@ -1,5 +1,5 @@
 ﻿  main.cpp
-f:\finalproject\paperproject\pathtracer\main.cpp(47): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\pathtracer\main.cpp(89): warning C4018: “<”: 有符号/无符号不匹配
-f:\finalproject\paperproject\pathtracer\main.cpp(159): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\pathtracer\main.cpp(51): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\pathtracer\main.cpp(96): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\pathtracer\main.cpp(167): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
   PathTracer.vcxproj -> F:\FinalProject\PaperProject\x64\Debug\PathTracer.exe

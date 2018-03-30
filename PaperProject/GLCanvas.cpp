@@ -16,7 +16,7 @@ bool DrawColorScene = 0;
 
 int SCR_WIDTH=1920;
 int SCR_HEIGHT=1080;
-Camera camera(scenemanager::CAMERA_POS);
+Camera camera(scenemanager::CAMERA_POS,scenemanager::CAMERA_DIR,0.0f,0.0f);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void keyboard_callback(GLFWwindow* window, int key, int scnacode, int action, int bit) {
 	if (key == GLFW_KEY_0 && action == GLFW_PRESS) {

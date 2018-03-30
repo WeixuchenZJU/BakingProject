@@ -20,6 +20,7 @@ public:
 	}
 	//加载材质列表
 	void LoadMTLList(std::string mtlfilepath);
+	std::vector<Material>& GetMTLlist() { return material_list; }
 	//查找材质索引
 	int FindMTLIndex(char* mtlname) { 
 		//printf("%s\n", mtlname);

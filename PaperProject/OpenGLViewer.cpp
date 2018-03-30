@@ -11,7 +11,7 @@ const char *OutTriRoot = "../BakingData/";
 int main() {
 	if (!DoBaking) {
 		GLCanvas *canvas = new GLCanvas();
-		canvas->Initialize(1920, 1080);
+		canvas->Initialize(1024, 768);
 		Shader *ourShader;
 		if (DrawColorScene) {
 			ourShader = new Shader("./Shaders/colorshader.vs", "./Shaders/colorshader.fs");
@@ -32,7 +32,7 @@ int main() {
 
 		canvas->Render();
 		canvas->Quit();
-		//OutputTriData out(OutTriRoot,canvas->GetScene());
+		OutputTriData out(OutTriRoot,canvas->GetScene());
 	}
 	else {
 		Precompute();

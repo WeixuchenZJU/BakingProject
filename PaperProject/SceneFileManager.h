@@ -2,7 +2,7 @@
 #include <glm/glm.hpp>
 #include "Light.h"
 namespace scenemanager {
-	static const char* scenefile[7] = { "../Models/triangle.obj" ,//0
+	static const char* scenefile[8] = { "../Models/triangle.obj" ,//0
 		
 	"../Models/cube.obj" ,//1
 	"../Models/sphere.obj" ,//2
@@ -10,7 +10,7 @@ namespace scenemanager {
 	"../Models/Sponza/Sponza.obj" ,//4
 	"../Models/happybudda_low.obj",//5
 		"../Models/Plane.obj" ,//6
-
+	"../Models/Sponza/lion.obj" //7
 	};
 	static const char* outputscenefile[7] = { "../Models/triangle.cobj" , 
 	"../Models/cube.cobj" ,
@@ -30,9 +30,19 @@ namespace scenemanager {
 		"../Models/Plane_r.obj" ,//6
 
 	};
-	static int sceneindex =4;
-	static glm::vec3 CAMERA_POS = glm::vec3(0.0f, 0.0f, 2.0f);
+	static int sceneindex =7;
+	//Camera Attributes
+	static glm::vec3 CAMERA_POS = glm::vec3(1048.30f,172.56f,-35.42f);
+	static glm::vec3 CAMERA_DIR = glm::vec3(1.0f,0.0f,0.0f);
+	static glm::vec3 CAMERA_HOR = glm::vec3(0.0f, 0.0f,1.0f);
 
+	/*<Pos:939.10 154.18 - 29.81>
+		<Direction:1.00 0.03 0.02>
+		<Horizon:-0.02 0.00 1.00>
+		<Up:-0.03 1.00 - 0.00>
+		<Yaw:0.87>
+		<Pitch:1.62
+		>*/
 	//Light Info
 	static LightType lighttype = POINTLIGHT;
 	static int lightnum = 1;

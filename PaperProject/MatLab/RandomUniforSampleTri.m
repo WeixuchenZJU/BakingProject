@@ -53,8 +53,8 @@ function [bc] = RandomUniforSampleTri(v0,v1,v2,N)
     %垂直于三角形的向量ej
     ej=cross(v1-v0,v2-v0);
 for i=1:N 
-    s=rand();%高方向采样
-    t=rand();%底方向采样
+    s=i/N;%高方向采样
+    t=i/N;%底方向采样
     sp=v1+s*h+t*(v2-v1);
     %判断采样点是否在三角形内部
     if(IsInTriangle(v0,v1,v2,sp))

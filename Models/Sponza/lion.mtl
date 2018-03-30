@@ -1,0 +1,40 @@
+newmtl sponza:Material__25
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd lion.png
+map_Ka lion.png
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl sponza:Material__298
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd background.png
+map_Ka background.png
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl sponza:bricks
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd spnza_bricks_a_diff.png
+map_Ka spnza_bricks_a_diff.png
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00
+newmtl sponza:ceiling
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd sponza_ceiling_a_diff.png
+map_Ka sponza_ceiling_a_diff.png
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 10.00

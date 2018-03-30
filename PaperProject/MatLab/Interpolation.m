@@ -13,13 +13,15 @@ c=(e02*e02-e12*e12+a*a)/(2*a);
 b=sqrt(e02*e02-c*c);
 v2=[c,b,0]';
 % subplot(3,4,i);
-DrawTriangle(v0,v1,v2);
-    for j=4:10204
-        s=tri0(j,1);
-        t=tri0(j,2);
-        sp=s*v0+t*v1+(1-s-t)*v2;
-        plot3(sp(1),sp(2),tri0(j,3),'.','Color',tri0(j,3:5));
-    end
+
+UniformSampleBC(v0,v1,v2,100);
+
+%     for j=4:10204
+%         s=tri0(j,1);
+%         t=tri0(j,2);
+%         sp=s*v0+t*v1+(1-s-t)*v2;
+%         plot3(sp(1),sp(2),tri0(j,3),'.','Color',tri0(j,3:5));
+%     end
 end
 
 % [sp,v0,v1,v2]=UniformSampleTri(v0,v1,v2,2000);

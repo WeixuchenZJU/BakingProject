@@ -7,6 +7,9 @@
 #include "Path.h"
 #include <random>
 #define PI 3.14159265358979323846
+static std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // generates random floats between 0.0 and 1.0
+static std::default_random_engine generator;
+#define UNIFORMDIS randomFloats(generator)
 glm::vec3 camera_pos(278.0f, 273.0f, -800.0f);
 glm::vec3 camera_dir(0.0f, 0.0f, 1.0f);
 glm::vec3 camera_up(0.0f, 1.0f, 0.0f);
@@ -18,7 +21,7 @@ const char* cornell_box_file_1 = "F:\\FinalProject\\PaperProject\\Models\\scene_
 const char* cornell_box_mtl_file_0 = "F:\\FinalProject\\PaperProject\\Models\\scene_0_obj\\CornellBox.mtl";
 const char* cornell_box_mtl_file_1 = "F:\\FinalProject\\PaperProject\\Models\\scene_1_obj\\scene01.mtl";
 int top_left_corner = 0;
-int bottom_right_corner =512;
+int bottom_right_corner =128;
 struct path {
 	glm::vec3 result;
 	glm::vec3 radiance;
@@ -30,6 +33,7 @@ struct path {
 	int countEmitted;
 	bool done;
 };
+
 glm::vec3 CosweightSampling(glm::vec3 N) {
 	glm::vec3 sampledir;
 	// generate sample kernel
@@ -38,8 +42,8 @@ glm::vec3 CosweightSampling(glm::vec3 N) {
 	//std::default_random_engine generator;
 	float theta, phi;
 	float U1, U2;
-	U1 = rand()*1.0f / RAND_MAX;
-	U2 = rand()*1.0f / RAND_MAX;
+	U1 = UNIFORMDIS;
+	U2 = UNIFORMDIS;
 	//U1 = 0.275887f;
 	//U2 = 0.272896f;
 	//printf("%.6f,%.6f\n", U1, U2);
@@ -71,10 +75,10 @@ glm::vec3 CosweightSampling(glm::vec3 N) {
 int main()
 {
 	//声明采样数
-	unsigned int sqrt_num_samples =64;
+	unsigned int sqrt_num_samples =200;
 	unsigned int samples_per_pixel = sqrt_num_samples * sqrt_num_samples;
 	//路径深度
-	int DEPTH =5;
+	int DEPTH =10;
 	float inv_samples = 1.0f / samples_per_pixel;
 	SceneParser scene_parser(cornell_box_file_0, cornell_box_mtl_file_0);
 	//SceneParser scene_parser("../Models/plane.obj","../Models/plane.mtl");
@@ -82,10 +86,13 @@ int main()
 	Image* result = new Image(WIDTH, HEIGHT);
 	PathTracer pathtracer(&scene_parser, DEPTH);
 	result->SetAllPixels(glm::vec3(0.0f, 0.0f, 0.0f));
+	double totalnum = 128 * 128;
+	double percentage = 0.0f;
+	int num = 0;
 	for (int i =top_left_corner; i <bottom_right_corner; i++) {
 		for (int j = top_left_corner;j <bottom_right_corner; j++) {
-			glm::vec3 color(0.0f, 0.0f, 0.0f);//当前像素点的最终颜色
-			
+			glm::vec3 color(0.0f, 0.0f, 0.0f);//当前像素点的最终颜色		
+#pragma omp parallel for
 			for (int k = 0; k <samples_per_pixel ; k++) {
 				//
 				// Sample pixel using jittering
@@ -94,7 +101,7 @@ int main()
 				unsigned int y = k / sqrt_num_samples;
 				glm::vec2 samplepixel(i, j);
 				samplepixel = samplepixel +glm::vec2(x, y)*(1.0f/sqrt_num_samples)+glm::vec2(1.0f / samples_per_pixel, 1.0f / samples_per_pixel);
-				glm::vec2 jitter = glm::vec2((rand()*2.0f/RAND_MAX- 1.0f)/ samples_per_pixel, (rand()*2.0f / RAND_MAX - 1.0f) / samples_per_pixel);
+				glm::vec2 jitter = glm::vec2((UNIFORMDIS*2.0f-1.0f)/ samples_per_pixel, (UNIFORMDIS*2.0f - 1.0f) / samples_per_pixel);
 				/*printf("x=%.2f,y=%.2f\n", jitter.x, jitter.y);
 				printf("%.2f,%.2f\n", samplepixel.x, samplepixel.y);*/
 				samplepixel = samplepixel;
@@ -124,7 +131,7 @@ int main()
 						break;
 					case LIGHT:
 						current_path.done = true;
-						current_path.radiance= current_path.countEmitted? glm::vec3(15.0f, 15.0f, 5.0f): glm::vec3(0.0f, 0.0f, 0.0f);
+						current_path.radiance= current_path.countEmitted? glm::vec3(15.0f, 15.0f, 15.0f): glm::vec3(0.0f, 0.0f, 0.0f);
 						break;
 					case DIFFUSE:
 						current_path.origin = hit.getIntersectionPoint();
@@ -135,8 +142,9 @@ int main()
 						//Compute Direct Lighting
 						 glm::vec3 dresult(0.0f, 0.0f, 0.0f); 
 						 //Random choose a point on light
-						 float z1 = rand()*1.0f / RAND_MAX;
-						 float z2 = rand()*1.0f / RAND_MAX;
+						
+						 float z1 = UNIFORMDIS;
+						 float z2 = UNIFORMDIS;
 						 glm::vec3 light_pos = al.getLightPos(z1, z2);
 						
 						 float  Ldist = glm::length(light_pos - current_path.origin);
@@ -157,7 +165,7 @@ int main()
 								// printf("%.4f\n", A);
 								 // convert area based pdf to solid angle
 								 float weight = nDl * LnDl * A /( PI * Ldist * Ldist);
-								 dresult += glm::vec3(15.0f, 15.0f, 5.0f) * weight;
+								 dresult += glm::vec3(15.0f, 15.0f, 15.0f) * weight;
 							 }
 						 }
 						 current_path.radiance = dresult;
@@ -171,7 +179,7 @@ int main()
 					//Russian roulette termination
 					if (current_path.depth >= DEPTH) {
 						float pcont = glm::max(glm::max(current_path.attenuation.x, current_path.attenuation.y), current_path.attenuation.z);
-						float p= rand()*1.0f / RAND_MAX;
+						float p= UNIFORMDIS;
 						if (p >= pcont)
 							break;
 						current_path.attenuation /= pcont;
@@ -184,12 +192,22 @@ int main()
 				}
 				color += current_path.result*inv_samples;
 			}
-			printf("<%d %d> is OK\n", i, j);
+			percentage = (num++)*1.0f / totalnum;
+			//printf("/r\n", i, j);
+			std::cout << "\r" << percentage;
+		//	printf("\r%f",)
 			result->SetPixel(i, j,color);
 		}
 	}
-	result->SaveTGA("test2.tga");
-	free(result);
+	result->SaveTGA("test1234.tga");
+	delete result;
 	
+	//double sum = 0.0;
+	//for (int i = 0; i < 10; i++) {
+	//	UNIFORMDIS;
+	//	//sum += randomnumber;
+	//	//std::cout << randomnumber << std::endl;
+	//}
+	//std::cout <<"Sum is"<< sum << std::endl;
 	return 0;
 }
