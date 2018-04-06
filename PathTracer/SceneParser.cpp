@@ -1,5 +1,6 @@
 #include "SceneParser.h"
 #include <string.h>
+#define EPS 1e-2f
 SceneParser::SceneParser(const char *filename, const char *mtl_filename) {
 	//Read MTL
 	printf("Loading MTL file %s\n", mtl_filename);
@@ -134,25 +135,6 @@ SceneParser::SceneParser(const char *filename, const char *mtl_filename) {
 		}
 	}
 	fclose(file);
-	//…Ë÷√π‚‘¥
-	Vertex v0, v1, v2, v3;
-	//glm::vec3 p0(-1.05f, 9.882112f, -1.05f);
-	//glm::vec3 p1(1.05f, 9.882112f, -1.05f);
-	//glm::vec3 p2(1.05f, 9.882112f, 1.05f);
-	//glm::vec3 p3(-1.05f, 9.882112f, 1.05f);
-	glm::vec3 p0(213.0f, 548.8f, 227.0f);
-	glm::vec3 p1(343.0f, 548.8f, 227.0f);
-	glm::vec3 p2(343.0f, 548.8f, 332.0f);
-	glm::vec3 p3(213.0f, 548.8f, 332.0f);
-	v0.pos = p0;
-	v1.pos = p1;
-	v2.pos = p2;
-	v3.pos = p3;
-	Triangle face1(v0, v1, v2);
-	Triangle face2(v0, v2, v3);
-
-	arealight = AreaLight(face1, face2);
-	//printf("Faces:%d Vertex:%d Normals:%d UVs:%d\n", temp_vertices.size(), temp_normals.size(), temp_uvs.size());
 }
 SceneParser::~SceneParser() {
 
@@ -165,18 +147,14 @@ intersecttype SceneParser::Intersect(Ray &ray,Hit &hit,float tmin) {
 		return BG;
 	}
 	else {
-		if (arealight.IntersectAreaLight(ray)) {
-			return LIGHT;
-		}
-		else
-			return DIFFUSE;
+	    return DIFFUSE;
 	}
 
 }
 bool SceneParser::IntersectShadowRay(Ray &ray, Hit &hit, float tmin,float lightdis) {
 	for (int i = 0; i < triangles.size(); i++) {
 		triangles[i].intersect(ray, hit, tmin);
-		if (hit.getT()<lightdis) {
+		if (hit.getT()<lightdis-0.01) {
 			return true;
 		}
 	}

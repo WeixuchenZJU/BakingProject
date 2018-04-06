@@ -1,5 +1,8 @@
 ﻿  main.cpp
-f:\finalproject\paperproject\pathtracer\main.cpp(51): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\pathtracer\main.cpp(96): warning C4018: “<”: 有符号/无符号不匹配
-f:\finalproject\paperproject\pathtracer\main.cpp(167): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\pathtracer\main.cpp(13): warning C4005: “PI”: 宏重定义
+  f:\finalproject\paperproject\pathtracer\pathtracer.h(7): note: 参见“PI”的前一个定义
+f:\finalproject\paperproject\pathtracer\main.cpp(273): warning C4244: “初始化”: 从“int”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\pathtracer\main.cpp(306): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\pathtracer\main.cpp(325): warning C4129: “%”: 不可识别的字符转义序列
+f:\finalproject\paperproject\pathtracer\main.cpp(325): warning C4778: “printf”: 格式字符串“%”未终止
   PathTracer.vcxproj -> F:\FinalProject\PaperProject\x64\Debug\PathTracer.exe

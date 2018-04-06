@@ -9,7 +9,7 @@ class PathTracer
 {
 public:
 	PathTracer(SceneParser *s, int maxbounces) :m_scene(s), m_maxbounces(maxbounces) {}
-	glm::vec3 TraceRay(Ray &ray,int bounces,Hit &hit,Path& path);
+	glm::vec3 TraceRay(Ray &ray,int bounces,Hit &hit);
 	glm::vec3 TracePath(Ray &ray, int bounces, Hit &hit, Path& path, float tmin);
 	glm::vec3 CosweightSampling(Hit hit);
 	~PathTracer() {}

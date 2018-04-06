@@ -4,14 +4,14 @@
 #include <glm/vector_relational.hpp>
 #include <random>
 #define EPS 0.001f
-glm::vec3 PathTracer::TraceRay(Ray &ray, int bounces, Hit &hit, Path& path) {
+glm::vec3 PathTracer::TraceRay(Ray &ray, int bounces, Hit &hit) {
 	glm::vec3 Color(0.0f, 0.0f, 0.0f);
 	glm::vec3 LightPos(250.0f, 548.8f, 250.0f);
 	//如果光线深度超过最大深度
 	if (bounces>m_maxbounces) {
 		return Color;
 	}
-	bool intersect = m_scene->Intersect(ray, hit,0.0F);
+	bool intersect = m_scene->Intersect(ray, hit,0.0f);
 	if (!intersect) {
 		return Color;
 	}

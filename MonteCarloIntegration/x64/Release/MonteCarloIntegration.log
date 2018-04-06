@@ -1,6 +1,6 @@
 ﻿  main.cpp
-e:\xuchen\bakingproject\montecarlointegration\main.cpp(154): warning C4838: 从“int”转换到“unsigned short”需要收缩转换
+main.cpp(154): warning C4838: 从“int”转换到“unsigned short”需要收缩转换
   正在生成代码
   All 41 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   已完成代码的生成
-  MonteCarloIntegration.vcxproj -> E:\Xuchen\BakingProject\x64\Release\MonteCarloIntegration.exe
+  MonteCarloIntegration.vcxproj -> F:\FinalProject\PaperProject\x64\Release\MonteCarloIntegration.exe

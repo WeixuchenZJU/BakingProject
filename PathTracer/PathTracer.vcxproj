@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClCompile Include="AreaLight.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="hit.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="AreaLight.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="hit.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="Material.h" />
@@ -158,6 +160,7 @@
     <ClInclude Include="ray.h" />
     <ClInclude Include="SceneFileManager.h" />
     <ClInclude Include="SceneParser.h" />
+    <ClInclude Include="timer.h" />
     <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

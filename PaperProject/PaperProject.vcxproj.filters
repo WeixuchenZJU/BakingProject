@@ -57,6 +57,9 @@
     <ClCompile Include="OutputTriData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Filter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
@@ -96,6 +99,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="OutputTriData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
