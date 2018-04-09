@@ -9,6 +9,9 @@ bool DoBaking =0;
 void Precompute();
 const char *OutTriRoot = "../BakingData/";
 int main() {
+	printf("%.4f,%.4f,%.4f\n", scenemanager::sceneCam[scenemanager::sceneindex].pos.x, scenemanager::sceneCam[scenemanager::sceneindex].pos.y, scenemanager::sceneCam[scenemanager::sceneindex].pos.z);
+
+
 	if (!DoBaking) {
 		GLCanvas *canvas = new GLCanvas();
 		canvas->Initialize(1024, 768);
@@ -21,7 +24,8 @@ int main() {
 			//Simple diffuse light shader
 			//ourShader = new Shader("./Shaders/simpleshader.vs", "./Shaders/simpleshader.fs");
 			//Diffuse texture shader
-			ourShader = new Shader("./Shaders/diffuseshader.vs", "./Shaders/diffuseshader.fs");
+			//ourShader = new Shader("./Shaders/diffuseshader.vs", "./Shaders/diffuseshader.fs");
+			ourShader = new Shader("./Shaders/VertexComputeShader.vs", "./Shaders/VertexComputeShader.fs");
 			canvas->LoadScene(scenemanager::scenefile[scenemanager::sceneindex]);
 			//canvas->LoadScene("../Models/test.obj");
 		}

@@ -29,17 +29,17 @@ OutputTriData::OutputTriData(const char* root, Scene *scene)
 		std::vector<Vertex> vertices = g[ig].GetVertices();
 		//读取当前Group的贴图
 		// load image, create texture and generate mipmaps
-		int width, height, nrChannels;
+		//int width, height, nrChannels;
 		// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
 		//const char *kdpath = scene->GetMTLlist()[g[ig].GetMTLIndex()].GetKdName();
-		const char *kdpath = "../Models/Sponza/liontest.png";
+		/*const char *kdpath = "../Models/Sponza/liontest.png";
 		unsigned char *data = stbi_load(kdpath, &width, &height, &nrChannels, STBI_rgb_alpha);
 		printf("This is a test:\n");
 			for (int y = 0; y < height; y++) {
 				for (int x = 0; x < width; x++) {
 				printf("%d %d %d\n", data[(y*width+x)*4], data[(y*width + x) * 4 +1], data[(y*width + x) * 4 +2]);
 			}
-		}
+		}*/
 			for (int i = 0; i < vertices.size()/3; i++) {
 				std::string datafile = datadir;
 				datafile += "/t" + std::to_string(i) + ".txt";
@@ -50,15 +50,15 @@ OutputTriData::OutputTriData(const char* root, Scene *scene)
 				fprintf(file, "%f %f %f %f %f\n", 1.0f,0.0f,vertices[i * 3 + 0].Position.x, vertices[i * 3 + 0].Position.y, vertices[i * 3 + 0].Position.z);
 				fprintf(file, "%f %f %f %f %f\n", 0.0f,1.0f,vertices[i * 3 + 1].Position.x, vertices[i * 3 + 1].Position.y, vertices[i * 3 + 1].Position.z);
 				fprintf(file, "%f %f %f %f %f\n", 0.0f,0.0f,vertices[i * 3 + 2].Position.x, vertices[i * 3 + 2].Position.y, vertices[i * 3 + 2].Position.z);
-				//输出顶点的颜色
-				for (int pi = 0; pi < 3; pi++) {
-					int u = (vertices[i * 3 + i].TexCoords.x)*width;
-					int v = (vertices[i * 3 + i].TexCoords.y)*height;
-					glm::uvec4 color(data[v*height+u], data[v*height + u+1], data[v*height + u+2], data[v*height + u + 3]);
-					//fprintf(file, "%f %f %f %f %f\n",)
-				}
+				////输出顶点的颜色
+				//for (int pi = 0; pi < 3; pi++) {
+				//	int u = (vertices[i * 3 + i].TexCoords.x)*width;
+				//	int v = (vertices[i * 3 + i].TexCoords.y)*height;
+				//	glm::uvec4 color(data[v*height+u], data[v*height + u+1], data[v*height + u+2], data[v*height + u + 3]);
+				//	//fprintf(file, "%f %f %f %f %f\n",)
+				//}
 				//输出采样点 后几行为采样点
-				/*for (float s = 0; s <= 1; s += 0.01) {
+				for (float s = 0; s <= 1; s += 0.01) {
 					for (float t = 0; t <= 1; t += 0.01) {
 						float a = 1 - sqrtf(t);
 						float b = (1 - s)*sqrtf(t);
@@ -70,7 +70,7 @@ OutputTriData::OutputTriData(const char* root, Scene *scene)
 						glm::vec3 color = glm::max(0.0f,glm::dot(glm::normalize(sp.Normal), glm::normalize(lightpos - sp.Position)))*lightcolor*objcolor;
 						fprintf(file, "%f %f %f %f %f\n", a, b, color.r, color.g, color.b);
 					}
-				}*/
+				}
 				fclose(file);
 			}
 	}

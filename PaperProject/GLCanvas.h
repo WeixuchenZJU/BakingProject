@@ -24,7 +24,7 @@ public:
 	void processInput(GLFWwindow *window);
 	//static Camera* GetCamera() { return m_camera; }
 	//static Camera* m_camera;
-	
+	glm::vec3 lightpos;
 private:
 	void ComputeFPS();
 //	GLuint VBO, VAO, EBO;

@@ -64,17 +64,34 @@ void ModelFileLoader::OBJLoader(const char* OBJ_FILE,Scene* scene) {
 			unsigned int vertexIndex[4], uvIndex[4], normalIndex[4];
 			int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2], &vertexIndex[3], &uvIndex[3], &normalIndex[3]);
 			Vertex v[4];
-			for (int i = 0; i < 3; i++) {
+			/*for (int i = 0; i < 3; i++) {
 				v[i].Position = temp_vertices[vertexIndex[i] - 1];
 				v[i].Normal = temp_normals[normalIndex[i] - 1];
 				v[i].TexCoords = temp_uvs[uvIndex[i] - 1];
+				v[i].BaryCentricCoordinates = glm::vec2((i+1)/1, (i+1));
 				currentgroup.AddVertex(v[i]);
-			}
+			}*/
+			v[0].Position = temp_vertices[vertexIndex[0] - 1];
+			v[0].Normal = temp_normals[normalIndex[0] - 1];
+			v[0].TexCoords = temp_uvs[uvIndex[0] - 1];
+			v[0].BaryCentricCoordinates = glm::vec2(1,0);
+			currentgroup.AddVertex(v[0]);
+			v[1].Position = temp_vertices[vertexIndex[1] - 1];
+			v[1].Normal = temp_normals[normalIndex[1] - 1];
+			v[1].TexCoords = temp_uvs[uvIndex[1] - 1];
+			v[1].BaryCentricCoordinates = glm::vec2(0, 1);
+			currentgroup.AddVertex(v[1]);
+			v[2].Position = temp_vertices[vertexIndex[2] - 1];
+			v[2].Normal = temp_normals[normalIndex[2] - 1];
+			v[2].TexCoords = temp_uvs[uvIndex[2] - 1];
+			v[2].BaryCentricCoordinates = glm::vec2(0, 0);
+			currentgroup.AddVertex(v[02]);
 			numoffaces++;
 			if (matches == 12) {
 				v[3].Position = temp_vertices[vertexIndex[3] - 1];
 				v[3].Normal = temp_normals[normalIndex[3] - 1];
 				v[3].TexCoords = temp_uvs[uvIndex[3] - 1];
+				v[3].BaryCentricCoordinates= glm::vec2(0, 0);
 				currentgroup.AddVertex(v[0]);
 				currentgroup.AddVertex(v[2]);
 				currentgroup.AddVertex(v[3]);

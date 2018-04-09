@@ -32,8 +32,11 @@ void Group::Set(std::vector<Material> material_list) {
 	// uv Coordinate
 	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, TexCoords));
+	
+	//BC Coordinate
+	glEnableVertexAttribArray(3);
+	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, BaryCentricCoordinates));
 	glBindVertexArray(0);
-
 	//Bind Textures
 	glGenTextures(1, &map_diffuse);
 	glBindTexture(GL_TEXTURE_2D, map_diffuse); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object

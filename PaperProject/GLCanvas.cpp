@@ -16,7 +16,7 @@ bool DrawColorScene = 0;
 
 int SCR_WIDTH=1920;
 int SCR_HEIGHT=1080;
-Camera camera(scenemanager::CAMERA_POS,scenemanager::CAMERA_DIR,0.0f,0.0f);
+Camera camera(scenemanager::sceneCam[scenemanager::sceneindex].pos, scenemanager::sceneCam[scenemanager::sceneindex].dir, scenemanager::sceneCam[scenemanager::sceneindex].yaw, scenemanager::sceneCam[scenemanager::sceneindex].pitch);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void keyboard_callback(GLFWwindow* window, int key, int scnacode, int action, int bit) {
 	if (key == GLFW_KEY_0 && action == GLFW_PRESS) {
@@ -84,7 +84,7 @@ void GLCanvas::Initialize(int width, int height) {
 	}
 	//glEnable(GL_MULTISAMPLE);
 	glEnable(GL_DEPTH_TEST);
-	
+	lightpos = scenemanager::lightpos[0];
 }
 void GLCanvas::Render()
 {
@@ -95,11 +95,11 @@ void GLCanvas::Render()
 		processInput(window);
 
 
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		m_shader->use();
 		//Set Light
-		m_shader->setVec3("lightPos", scenemanager::lightpos[0]);
+		m_shader->setVec3("lightPos",lightpos);
 		m_shader->setVec3("lightColor", scenemanager::lightcolor[0]);
 		// pass projection matrix to shader (note that in this case it could change every frame)
 		glm::mat4 projection = glm::perspective(camera.Zoom, (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 10000.0f);
@@ -200,6 +200,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 void GLCanvas::processInput(GLFWwindow *window)
 {
 	//Keyboard Input
+	//CameraControl
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -254,4 +255,6 @@ void GLCanvas::processInput(GLFWwindow *window)
 			firstRightMouse = true;
 		}
 	}
+
+	//Light
 }

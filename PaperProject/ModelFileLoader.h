@@ -11,6 +11,8 @@ struct Vertex {
 	glm::vec3 Normal;
 	// texCoords
 	glm::vec2 TexCoords;
+	//BC
+	glm::vec2 BaryCentricCoordinates;
 	//// tangent
 	//glm::vec3 Tangent;
 	//// bitangent

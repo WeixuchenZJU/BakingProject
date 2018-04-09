@@ -1,5 +1,5 @@
 for i=1:1
-tri0=load(strcat(strcat('..\\BakingData\\cube\\t',num2str(i-1,'%d')),'.txt'));
+tri0=load(strcat(strcat('F:\\FinalProject\\PaperProject\\BakingData\\triangle\\t',num2str(i-1,'%d')),'.txt'));
 vv0= tri0(1,3:5)';
 vv1=tri0(2,3:5)';
 vv2=tri0(3,3:5)';
@@ -14,14 +14,15 @@ b=sqrt(e02*e02-c*c);
 v2=[c,b,0]';
 % subplot(3,4,i);
 
-UniformSampleBC(v0,v1,v2,100);
+% UniformSampleBC(v0,v1,v2,100);
 
-%     for j=4:10204
-%         s=tri0(j,1);
-%         t=tri0(j,2);
-%         sp=s*v0+t*v1+(1-s-t)*v2;
-%         plot3(sp(1),sp(2),tri0(j,3),'.','Color',tri0(j,3:5));
-%     end
+    for j=4:10204
+        s=tri0(j,1);
+        t=tri0(j,2);
+        sp=s*v0+t*v1+(1-s-t)*v2;
+        plot3(sp(1),sp(2),tri0(j,3),'.','Color',tri0(j,3:5));
+        hold on;
+    end
 end
 
 % [sp,v0,v1,v2]=UniformSampleTri(v0,v1,v2,2000);
