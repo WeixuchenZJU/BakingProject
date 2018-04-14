@@ -25,7 +25,8 @@ int main() {
 			//ourShader = new Shader("./Shaders/simpleshader.vs", "./Shaders/simpleshader.fs");
 			//Diffuse texture shader
 			//ourShader = new Shader("./Shaders/diffuseshader.vs", "./Shaders/diffuseshader.fs");
-			ourShader = new Shader("./Shaders/VertexComputeShader.vs", "./Shaders/VertexComputeShader.fs");
+			ourShader = new Shader("./Shaders/OriginShader.vs", "./Shaders/OriginShader.fs");
+			//ourShader = new Shader("./Shaders/VertexComputeShader.vs", "./Shaders/VertexComputeShader.fs");
 			canvas->LoadScene(scenemanager::scenefile[scenemanager::sceneindex]);
 			//canvas->LoadScene("../Models/test.obj");
 		}

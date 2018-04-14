@@ -1,18 +1,13 @@
-﻿  GLCanvas.cpp
+﻿  OutputTriData.cpp
 f:\finalproject\paperproject\paperproject\shader.h(65): warning C4101: “infoLog”: 未引用的局部变量
 f:\finalproject\paperproject\paperproject\shader.h(64): warning C4101: “success”: 未引用的局部变量
-f:\finalproject\paperproject\paperproject\camera.h(120): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\camera.h(121): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\camera.h(122): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
 f:\finalproject\paperproject\paperproject\scene.h(13): warning C4018: “<”: 有符号/无符号不匹配
 f:\finalproject\paperproject\paperproject\scene.h(28): warning C4018: “<”: 有符号/无符号不匹配
 f:\finalproject\paperproject\paperproject\scene.h(37): warning C4018: “<”: 有符号/无符号不匹配
 f:\finalproject\paperproject\paperproject\scene.h(43): warning C4018: “<”: 有符号/无符号不匹配
-f:\finalproject\paperproject\paperproject\glcanvas.cpp(207): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\glcanvas.cpp(209): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\glcanvas.cpp(211): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\glcanvas.cpp(213): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\glcanvas.cpp(215): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\glcanvas.cpp(217): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-f:\finalproject\paperproject\paperproject\glcanvas.cpp(252): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\camera.h(120): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\camera.h(121): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\camera.h(122): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(32): warning C4018: “<”: 有符号/无符号不匹配
+f:\finalproject\paperproject\paperproject\outputtridata.cpp(47): warning C4018: “<”: 有符号/无符号不匹配
   PaperProject.vcxproj -> F:\FinalProject\PaperProject\Debug\PaperProject.exe

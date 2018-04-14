@@ -13,16 +13,46 @@ c=(e02*e02-e12*e12+a*a)/(2*a);
 b=sqrt(e02*e02-c*c);
 v2=[c,b,0]';
 % subplot(3,4,i);
-
-% UniformSampleBC(v0,v1,v2,100);
-
-    for j=4:10204
+%UniformSampleBC(v0,v1,v2,100);
+DrawTriangle(v0,v1,v2);
+A=zeros(3);
+A2=zeros(6);
+b=[0,0,0]';
+b2=[0,0,0,0,0,0]';
+    for j=4:length(tri0)
         s=tri0(j,1);
         t=tri0(j,2);
-        sp=s*v0+t*v1+(1-s-t)*v2;
-        plot3(sp(1),sp(2),tri0(j,3),'.','Color',tri0(j,3:5));
+        u=1-s-t;
+        sp=s*v0+t*v1+u*v2;
+        h1=[s,t,u]';
+        h2=[s^2,t^2,u^2,s*t,s*u,t*u]';
+        Ai=h1*h1';
+        A2i=h2*h2';
+        A=A+Ai;
+        A2=A2+A2i;
+        bi=tri0(j,3)*h1;
+        b2i=tri0(j,3)*h2;
+        b=b+bi;
+        b2=b2+b2i;
+        plot3(sp(1),sp(2),tri0(j,3),'.','Color',[1,1,1]-tri0(j,3:5));
         hold on;
     end
+    A;
+    x=A\b;
+    x2=A2\b2;
+    vvv0=[v0(1),v0(2),x(1)];
+    vvv1=[v1(1),v1(2),x(2)];
+    vvv2=[v2(1),v2(2),x(3)];
+    DrawTriangle(vvv0,vvv1,vvv2);
+    %2nd Bezier
+     for j=4:length(tri0)
+        s=tri0(j,1);
+        t=tri0(j,2);
+        u=1-s-t;
+        sp=s*v0+t*v1+u*v2;
+        bezier2nd=Bezier2nd(s,t,x2(1),x2(2),x2(3),x2(4),x2(5),x2(6));
+        plot3(sp(1),sp(2),bezier2nd,'.','Color',[1,0,0]);
+     end
 end
 
 % [sp,v0,v1,v2]=UniformSampleTri(v0,v1,v2,2000);

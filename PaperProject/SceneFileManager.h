@@ -3,7 +3,8 @@
 #include "Light.h"
 #include "Camera.h"
 namespace scenemanager {
-	static const char* scenefile[8] = { "../Models/triangle.obj" ,//0
+	static const char* scenefile[8] = {// "../Models/triangle.obj" ,//0
+		"../Models/TriangleTestSet/2_tri_single.obj" ,//0
 	"../Models/cube.obj" ,//1
 	"../Models/sphere.obj" ,//2
 	"../Models/happybudda_high.obj" ,//3
@@ -56,6 +57,6 @@ namespace scenemanager {
 	//Light Info
 	static LightType lighttype = POINTLIGHT;
 	static int lightnum = 1;
-	static glm::vec3 lightpos[1] = { glm::vec3(0.0f,0.0f,0.5f) };
+	static glm::vec3 lightpos[1] = { glm::vec3(0.5f,0.5f,0.5f) };
 	static glm::vec3 lightcolor[1] = { glm::vec3(1.0f,1.0f,1.0f) };
 }
